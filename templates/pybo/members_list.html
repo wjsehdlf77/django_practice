@@ -1,0 +1,9 @@
+{% if members_list %}
+    <ul>
+    {% for members in members_list %}
+        <li><a href = '/pybo/{{members.id}}/'>{{members.name}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>질문이 없습니다</p>
+{% endif %}                     
