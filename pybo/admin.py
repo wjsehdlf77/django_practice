@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Members
+from .models import RendBook
 
-# Register your models here.
+class MembersAdmin(admin.ModelAdmin):
+    search_fields = ['subject']
+
+admin.site.register(Members, MembersAdmin)
+admin.site.register(RendBook)
+

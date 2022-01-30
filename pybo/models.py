@@ -1,21 +1,26 @@
 from django.db import models
 
-class Question(models.Model):
-    subject = models.CharField(max_length=200)
-    content = models.TextField()
-    create_date = models.DateField()
-
-    def __str__(self):
-        return self
-
-
-class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    content = models.TextField()
+class Members(models.Model):
+    name = models.CharField(max_length = 30)
+    phone = models.CharField(max_length=12)
+    email = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
     create_date = models.DateTimeField()
 
-    def __ste__(self):
-        return self
+    def __str__(self):
+        return self.name
+
+
+class RendBook(models.Model):
+    name = models.ForeignKey(Members, on_delete = models.CASCADE)
+    book_name = models.CharField(max_length = 200)
+    money = models.CharField(max_length=50)
+    create_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.book_name
+
+
 
 
 
