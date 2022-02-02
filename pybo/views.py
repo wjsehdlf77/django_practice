@@ -1,6 +1,8 @@
-from multiprocessing import context
-from django.shortcuts import render, HttpResponse, get_object_or_404
+
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from .models import Members, RendBook
+from django.utils import timezone
+
 
 # Create your views here.
 
@@ -19,3 +21,13 @@ def detail(request, members_id):
     }
 
     return render(request, 'pybo/members_detail.html', context)
+
+def rendbook_add(request, members_id):
+
+    members = get_object_or_404(Members, pk = members_id)
+    members.rendbook_set.create(book_name = request.POST.get('book_name'),
+                                money = request.POST.get('money'),
+                                create_date = timezone.now())
+                                
+
+    return redirect('pybo:detail', members_id = members.id)

@@ -8,3 +8,19 @@
     주소 : {{members.address}}
 </div>
 
+<h5>{{members.rendbook_set.count}}개의 빌린 책이 있습니다.</h5>
+<div>
+    <ul>
+        {% for rendbook in members.rendbook_set.all %}
+        <li>{{rendbook.book_name}}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+<form action = "{% url 'pybo:rendbook_add' members.id %}" method = "post">
+    {% csrf_token %}
+    <textarea name = 'book_name' id = 'book_name' row = '15'></textarea>
+    <textarea name = 'money' id = 'money' row = '15'></textarea>
+    <input type = "submit" value = '답변등록'>
+</form>
